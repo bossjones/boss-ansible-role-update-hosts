@@ -1,2 +1,4 @@
 ---
-# defaults file for bossjones.update-hosts
+# defaults file for boss-ansible-role-update-hosts
+
+boss__update_hosts_hosts_file: /etc/hosts

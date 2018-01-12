@@ -7,9 +7,38 @@ lint:
   name: yamllint
   enabled: False
 platforms:
-  - name: instance
-    image: ubuntu:16.04
-    # privileged: True
+  # source: https://blog.opsfactory.rocks/testing-ansible-roles-with-molecule-97ceca46736a
+  # source: https://github.com/solita/docker-systemd
+  # source: https://github.com/solita/docker-systemd-ssh/blob/master/Dockerfile
+  #
+  - name: update-hosts-xenial
+    image: solita/ubuntu-systemd
+    image_version: latest
+    privileged: True
+    ansible_groups:
+        - group1
+  # - name: fedora-01
+  #   image: bossjones/fedora24-systemd-ansible:latest
+  #   privileged: True
+  #   command: /usr/sbin/init
+  #   # run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  #   # init: /usr/lib/systemd/systemd
+  #   groups:
+  #     - fedora
+  # TODO: USE THESES
+  # SOURCE: https://zapier.com/engineering/ansible-molecule/
+  #   - name: centos7
+  #   image: retr0h/centos7-systemd-ansible
+  #   image_version: latest
+  #   privileged: True
+  # - name: bootstrap-ubuntu-16.04
+  #   image: solita/ubuntu-systemd
+  #   image_version: latest
+  #   privileged: True
+  # - name: bootstrap-ubuntu-14.04
+  #   image: ubuntu-upstart
+  #   image_version: latest
+  #   privileged: True
 provisioner:
   name: ansible
   lint:
@@ -18,6 +47,20 @@ provisioner:
     # EANSIBLE0013 should not be raised for shell tasks that use globs.
     options:
       x: ANSIBLE0013
+  inventory:
+    host_vars:
+      update-hosts-xenial:
+        # SOURCE: https://github.com/osism/ansible-hosts/blob/ce8147623491011269bf15291bd8bf83397ab1ff/molecule/default/molecule.yml
+        # NOTE: workaround for https://github.com/moby/moby/issues/22281
+        hosts_file: /etc/hosts.molecule
+        management_interface: lo0
+        inventory_hostname: update-hosts-xenial
+        inventory_hostname_short: update-hosts-xenial
+        ansible_lo0:
+          ipv4:
+            address: 127.0.0.1
+    # group_vars:
+    #   all:
 verifier:
   name: testinfra
   options:

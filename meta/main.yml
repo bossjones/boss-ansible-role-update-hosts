@@ -3,7 +3,7 @@ allow_duplicates: no
 
 galaxy_info:
   author: Malcolm Jones
-  description: Ansible role update-hosts. Part of the bossjones suite of ansible roles
+  description: Ansible role to update host file across multiple machines(think vagrant). Part of the bossjones suite of ansible roles
   company: Tony Dark Labs
 
   # If the issue tracker for your role is not on github, uncomment the

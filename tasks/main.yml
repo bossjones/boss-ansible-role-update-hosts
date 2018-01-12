@@ -1,2 +1,10 @@
 ---
-# tasks file for bossjones.update-hosts
+# tasks file for boss-ansible-role-update-hosts
+
+# SOURCE: https://github.com/idegard/ansible-simple-swarm/blob/8272763a350d88b64380160af2512f8d271055c1/basic.yml
+- name: Ensure IP address of all hosts to all hosts
+  lineinfile:
+    dest: "{{boss__update_hosts_hosts_file}}"
+    line: "{{ hostvars[item]['ansible_default_ipv4']['address'] }} {{ hostvars[item].inventory_hostname }} {{ hostvars[item].inventory_hostname_short }}"
+    state: present
+  with_items: "{{ groups.all }}"
