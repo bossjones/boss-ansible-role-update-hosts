@@ -1,5 +1,6 @@
 {
   "python.pythonPath": "${workspaceFolder}/venv/bin/python",
+  "restructuredtext.confPath": "/Users/malcolm/dev/bossjones/bossjones-playbook-suite/boss-ansible-role-update-hosts",
   "files.exclude": {
     ".vagrant": "explorerExcludedFiles",
     ".DS_Store": "explorerExcludedFiles",
