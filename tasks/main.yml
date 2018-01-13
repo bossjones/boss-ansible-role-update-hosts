@@ -1,6 +1,12 @@
 ---
 # tasks file for boss-ansible-role-update-hosts
 
+- name: debug groups
+  debug: msg='{{groups}}'
+
+- name: debug hostvars
+  debug: msg='{{hostvars}}'
+
 # SOURCE: https://github.com/idegard/ansible-simple-swarm/blob/8272763a350d88b64380160af2512f8d271055c1/basic.yml
 - name: Ensure IP address of all hosts to all hosts
   lineinfile:

@@ -11,12 +11,28 @@ platforms:
   # source: https://github.com/solita/docker-systemd
   # source: https://github.com/solita/docker-systemd-ssh/blob/master/Dockerfile
   #
-  - name: update-hosts-xenial
+  - name: update-hosts-xenial-1
     image: solita/ubuntu-systemd
     image_version: latest
     privileged: True
-    ansible_groups:
-        - group1
+    groups:
+        - servers
+    capabilities:
+      - SYS_ADMIN
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    command: /sbin/init
+  - name: update-hosts-xenial-2
+    image: solita/ubuntu-systemd
+    image_version: latest
+    privileged: True
+    groups:
+        - servers
+    capabilities:
+      - SYS_ADMIN
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    command: /sbin/init
   # - name: fedora-01
   #   image: bossjones/fedora24-systemd-ansible:latest
   #   privileged: True
@@ -49,18 +65,30 @@ provisioner:
       x: ANSIBLE0013
   inventory:
     host_vars:
-      update-hosts-xenial:
+      update-hosts-xenial-1:
         # SOURCE: https://github.com/osism/ansible-hosts/blob/ce8147623491011269bf15291bd8bf83397ab1ff/molecule/default/molecule.yml
         # NOTE: workaround for https://github.com/moby/moby/issues/22281
         hosts_file: /etc/hosts.molecule
         management_interface: lo0
-        inventory_hostname: update-hosts-xenial
-        inventory_hostname_short: update-hosts-xenial
+        inventory_hostname: update-hosts-xenial-1
+        inventory_hostname_short: update-hosts-xenial-1
         ansible_lo0:
           ipv4:
             address: 127.0.0.1
-    # group_vars:
-    #   all:
+        ansible_default_ipv4:
+          address: 127.0.1.2
+      update-hosts-xenial-2:
+        # SOURCE: https://github.com/osism/ansible-hosts/blob/ce8147623491011269bf15291bd8bf83397ab1ff/molecule/default/molecule.yml
+        # NOTE: workaround for https://github.com/moby/moby/issues/22281
+        hosts_file: /etc/hosts.molecule
+        management_interface: lo0
+        inventory_hostname: update-hosts-xenial-2
+        inventory_hostname_short: update-hosts-xenial-2
+        ansible_lo0:
+          ipv4:
+            address: 127.0.0.1
+        ansible_default_ipv4:
+          address: 127.0.1.3
 verifier:
   name: testinfra
   options:

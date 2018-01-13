@@ -12,3 +12,6 @@ def test_hosts_file(host):
     assert f.exists
     assert f.user == 'root'
     assert f.group == 'root'
+    assert f.contains('127.0.1.2 update-hosts-xenial-1 update-hosts-xenial-1')
+    assert f.contains('127.0.1.3 update-hosts-xenial-2 update-hosts-xenial-2')
+
