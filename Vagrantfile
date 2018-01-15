@@ -15,7 +15,7 @@ guest_cache_path = '/tmp/vagrant-cache'
 default = {
   :user => ENV['OS_USER'] || 'vagrant',
   :project => File.basename(Dir.getwd),
-  :ansible_project_name => ENV['_ANSIBLE_PROJECT_NAME'] || 'bossjones.update-hosts'
+  :ansible_project_name => ENV['_ANSIBLE_PROJECT_NAME'] || 'boss-ansible-role-update-hosts'
 }
 
 VM_NODENAME = "vagrant-#{default[:user]}-#{default[:project]}"

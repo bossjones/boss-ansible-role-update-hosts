@@ -86,6 +86,9 @@ serverspec-install:
 download-roles:
 	ansible-galaxy install -r install_roles.txt --roles-path roles/ -vvv
 
+destroy:
+	molecule destroy
+
 install-cidr-brew:
 	pip install cidr-brewer
 
@@ -104,7 +107,11 @@ bootstrap: venv
 
 travis: bootstrap venv ci
 
-travis-osx: venv-osx ci
+travis-osx:
+	$(MAKE) venv-osx
+	$(MAKE) upgrade-setuptools
+	$(MAKE) venv-osx
+	$(MAKE) ci
 
 # OSX Order of operations, make travis-osx; . venv/bin/activate; make upgrade-setuptools; make travis-osx;
 

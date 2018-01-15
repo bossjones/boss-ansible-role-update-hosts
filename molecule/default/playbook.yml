@@ -1,6 +1,14 @@
 ---
 - name: Converge
   hosts: all
+  gather_facts: True
+
+  vars:
+    boss__update_hosts_hosts_file: /etc/hosts.molecule
+
   roles:
-    - role: boss-ansible-role-update-hostsbossjones__user: vagrant
+    - role: boss-ansible-role-update-hosts
+      bossjones__user: vagrant
       bossjones__group: vagrant
+      boss__update_hosts_hosts_file: /etc/hosts.molecule
+
