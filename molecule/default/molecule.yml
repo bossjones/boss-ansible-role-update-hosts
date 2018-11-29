@@ -6,6 +6,8 @@ driver:
 lint:
   name: yamllint
   enabled: False
+  options:
+    config-file: molecule/default/yaml-lint.yml
 platforms:
   # source: https://blog.opsfactory.rocks/testing-ansible-roles-with-molecule-97ceca46736a
   # source: https://github.com/solita/docker-systemd
@@ -57,6 +59,8 @@ platforms:
   #   privileged: True
 provisioner:
   name: ansible
+  options:
+    vvv: True
   lint:
     name: ansible-lint
     enabled: False
@@ -72,6 +76,9 @@ provisioner:
         management_interface: lo0
         inventory_hostname: update-hosts-xenial-1
         inventory_hostname_short: update-hosts-xenial-1
+        ansible_enp0s8:
+          ipv4:
+            address: 192.168.55.6
         ansible_lo0:
           ipv4:
             address: 127.0.0.1
@@ -84,6 +91,9 @@ provisioner:
         management_interface: lo0
         inventory_hostname: update-hosts-xenial-2
         inventory_hostname_short: update-hosts-xenial-2
+        ansible_enp0s8:
+          ipv4:
+            address: 192.168.55.7
         ansible_lo0:
           ipv4:
             address: 127.0.0.1
@@ -96,6 +106,7 @@ verifier:
   lint:
     name: flake8
     enabled: False
+
 scenario:
   name: default
   test_sequence:

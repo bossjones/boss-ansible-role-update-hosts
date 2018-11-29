@@ -1,0 +1,32 @@
+---
+- git: https://github.com/bossjones/boss-ansible-role-users.git
+  version: master
+  dst: $MOLECULE_EPHEMERAL_DIRECTORY/roles/boss-ansible-role-users/
+
+- git: https://github.com/bossjones/boss-ansible-role-fact.git
+  version: master
+  dst: $MOLECULE_EPHEMERAL_DIRECTORY/roles/boss-ansible-role-fact/
+
+- git: https://github.com/bossjones/boss-ansible-role-environment.git
+  version: master
+  dst: $MOLECULE_EPHEMERAL_DIRECTORY/roles/boss-ansible-role-environment/
+
+- git: https://github.com/bossjones/boss-ansible-role-core.git
+  version: master
+  dst: $MOLECULE_EPHEMERAL_DIRECTORY/roles/boss-ansible-role-core/
+
+- git: https://github.com/geerlingguy/ansible-role-pip.git
+  version: master
+  dst: $MOLECULE_EPHEMERAL_DIRECTORY/roles/geerlingguy.pip/
+
+- git: https://github.com/bossjones/boss-ansible-role-bootstrap.git
+  version: master
+  dst: $MOLECULE_EPHEMERAL_DIRECTORY/roles/boss-ansible-role-bootstrap/
+
+- git: https://github.com/bossjones/boss-ansible-role-bootstrap.git
+  version: master
+  dst: $MOLECULE_EPHEMERAL_DIRECTORY/roles/boss-ansible-role-bootstrap/
+
+- git: https://github.com/bossjones/boss-ansible-role-etckeeper.git
+  version: master
+  dst: $MOLECULE_EPHEMERAL_DIRECTORY/roles/boss-ansible-role-etckeeper/
