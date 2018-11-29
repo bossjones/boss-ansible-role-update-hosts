@@ -11,4 +11,6 @@
       bossjones__user: vagrant
       bossjones__group: vagrant
       boss__update__hosts__hosts_file: /etc/hosts.molecule
+      boss__update__hosts__ansible_group: "servers"
+      boss__update__hosts__networking_interface: "lo0"
 
