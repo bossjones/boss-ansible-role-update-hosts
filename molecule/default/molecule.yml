@@ -76,6 +76,9 @@ provisioner:
         management_interface: lo0
         inventory_hostname: update-hosts-xenial-1
         inventory_hostname_short: update-hosts-xenial-1
+        ansible_enp0s8:
+          ipv4:
+            address: 192.168.55.6
         ansible_lo0:
           ipv4:
             address: 127.0.0.1
@@ -88,6 +91,9 @@ provisioner:
         management_interface: lo0
         inventory_hostname: update-hosts-xenial-2
         inventory_hostname_short: update-hosts-xenial-2
+        ansible_enp0s8:
+          ipv4:
+            address: 192.168.55.7
         ansible_lo0:
           ipv4:
             address: 127.0.0.1
