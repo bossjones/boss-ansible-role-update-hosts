@@ -4,3 +4,5 @@
 boss__update__hosts__hosts_file: /etc/hosts
 # ansible group to use when finding ip addresses
 boss__update__hosts__ansible_group: "servers"
+
+boss__update__hosts__networking_interface: "eth0" # enp0s8 (if vagrant)
