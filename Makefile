@@ -10,8 +10,8 @@ DNSMASQ_DOMAIN         := hyenalab.home
 # URL_PATH_CONSUL        := 8500
 # URL_PATH_TRAEFIK       := 80
 # URL_PATH_TRAEFIK_API   := 8080
-URL_PATH_NETDATA_REGISTRY  := "http://nfs-master1.$(DNSMASQ_DOMAIN):19999"
-URL_PATH_NETDATA_NODE      := "http://nfs-worker1.$(DNSMASQ_DOMAIN):19999"
+URL_PATH_NETDATA_REGISTRY  := "http://rsyslogd-master-01.$(DNSMASQ_DOMAIN):19999"
+URL_PATH_NETDATA_NODE      := "http://rsyslogd-worker-01.$(DNSMASQ_DOMAIN):19999"
 URL_PATH_WHOAMI            := "http://whoami.$(DNSMASQ_DOMAIN)"
 URL_PATH_ECHOSERVER        := "http://echoserver.$(DNSMASQ_DOMAIN)"
 URL_PATH_ELASTICSEARCH     := "http://elasticsearch.$(DNSMASQ_DOMAIN)"
@@ -162,6 +162,7 @@ reload:
 	@vagrant reload
 
 destroy:
+	@vagrant halt -f
 	@vagrant destroy -f
 
 run-ansible:
@@ -200,8 +201,13 @@ run-ansible-master:
 run-ansible-timezone:
 	@ansible-playbook -i inventory.ini timezone.yml -v
 
+converge: up run-ansible
+
 ping:
 	@ansible-playbook -v -i inventory.ini ping.yml -vvvvv
+
+ansible-run-dynamic-debug:
+	@ansible-playbook -v -i inventory.ini dynamic_vars.yml
 
 # [ANSIBLE0013] Use shell only when shell functionality is required
 ansible-lint-role:
@@ -229,10 +235,10 @@ bridge-halt:
 	vagrant halt
 
 ssh-bridge-master:
-	ssh -vvvv -F ./ssh_config nfs-master-01.scarlettlab.home
+	ssh -vvvv -F ./ssh_config rsyslogd-master-01.scarlettlab.home
 
 ssh-bridge-worker:
-	ssh -vvvv -F ./ssh_config nfs-worker-01.scarlettlab.home
+	ssh -vvvv -F ./ssh_config rsyslogd-worker-01.scarlettlab.home
 
 ping-bridge:
 	@ansible-playbook -v -i hosts ping.yml
