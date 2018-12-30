@@ -1,30 +1,30 @@
 # https://gist.github.com/gnarf/b103e77f37236ca72d8e
 :vms:
-  hoststest1:
-    :hostname: "hoststest1"
+  hosts-test-01:
+    :hostname: "hosts-test-01"
     :ip: "192.168.13.100"
     :ram: 1024
     :cpu: 2
-    :box: "debian/stretch64"
+    :box: "ubuntu/xenial64"
 
-  hoststest2:
-    :hostname: "hoststest2"
+  hosts-test-02:
+    :hostname: "hosts-test-02"
     :ip: "192.168.13.101"
     :ram: 1024
     :cpu: 2
-    :box: "debian/stretch64"
+    :box: "ubuntu/xenial64"
 
 :groups:
-  hoststest1:
-    - hoststest1
-  hoststest2:
-    - hoststest2
-  hoststest_servers:
-    - hoststest1
-    - hoststest2
+  hosts-test-01:
+    - hosts-test-01
+  hosts-test-02:
+    - hosts-test-02
+  host-stest-0_servers:
+    - hosts-test-01
+    - hosts-test-02
   servers:
-    - hoststest1
-    - hoststest2
+    - hosts-test-01
+    - hosts-test-02
   dns_servers:
-    - hoststest1
-    - hoststest2
+    - hosts-test-01
+    - hosts-test-02
