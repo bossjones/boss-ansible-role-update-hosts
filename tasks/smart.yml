@@ -1,0 +1,12 @@
+# tasks/main.yml
+---
+
+- name: Install custom hosts file
+  template:
+    src: etc_hosts.j2
+    dest: "{{ boss__update__hosts__hosts_file }}"
+    owner: root
+    group: root
+    mode: 0644
+    backup: "{{ boss__update__hosts__host_file_backup }}"
+  tags: hosts
