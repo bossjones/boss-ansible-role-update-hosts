@@ -204,7 +204,7 @@ run-ansible-timezone:
 converge: up run-ansible
 
 ping:
-	@ansible-playbook -v -i inventory.ini ping.yml -vvvvv
+	@ansible-playbook -v -i inventory.ini ping.yml
 
 ansible-run-dynamic-debug:
 	@ansible-playbook -v -i inventory.ini dynamic_vars.yml
