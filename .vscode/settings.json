@@ -56,6 +56,9 @@
     ".tox/": "explorerExcludedFiles",
     "tests/.cache/": "explorerExcludedFiles",
     "tests/__pycache__/": "explorerExcludedFiles",
-    "playbook.retry": "explorerExcludedFiles"
+    "playbook.retry": "explorerExcludedFiles",
+    "*.log": "explorerExcludedFiles",
+    ".vscode": "explorerExcludedFiles",
+    "_cache/": "explorerExcludedFiles"
   }
 }
